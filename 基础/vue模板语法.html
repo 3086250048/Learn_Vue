@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+            <h1>插值语法 </h1>
+            <h1>{{ name }}</h1>
+            <hr/>
+            <h1>指令语法</h1>
+            <!-- 加了v-bind:之后vue就会将引号内的内容当作js表达式执行 -->
+            <a v-bind:href="url0">动态跳转地址0{{ url_name.name0 }}</a>
+            <!-- v-bind: 可以简写成: -->
+            <a :href="url1">动态跳转地址1{{ url_name.name1 }}</a>
+    </div>
+
+
+    <script>
+        /*
+            Vue模板语法有2大类
+            1.插值语法
+                功能:用于解析标签体内容
+                写法:{{ xxx }} ,xxx是js表达式，可以直接大区到data内的属性
+            2.指令语法
+                功能:用于解析标签(包括:标签属性、标签体内容、绑定事件....)
+                举例:v-bind:href='url' 或简写为: :href='url' ,此时url可以
+                读取到data内的所有属性
+            3.vue中有很多属性，且形式都是v-???
+        
+        
+        */
+        new Vue({
+            el:'#root',
+            data:{
+                name:'czz',
+                url0:'http://www.baidu.com',
+                url1:'http://www.taobao.com',
+                url_name:{
+                    name0:'百度',
+                    name1:'淘宝'
+                }
+        }})
+    </script>
+    
+</body>
+</html>

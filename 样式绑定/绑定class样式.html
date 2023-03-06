@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .basic{
+            width: 500px;
+            height: 200px;
+            border: 1px solid red;
+        }
+        .red{
+            background-color: red;
+        }
+        .blue{
+            background-color: blue;
+        }
+        .pink{
+            background-color: pink;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- (两个class取并集) 字符串写法适用于样式的类名不确定，需要动态指定 -->
+        <div class="basic" :class="style" @click="fun0"></div>
+        <!-- 绑定class样式 数组写法 适用于:样式的类名不确定，个数也不确定 -->
+        <div class="basic" :class="Classarr" ></div>
+        <!-- 绑定class样式 对象写法，适用于:要绑定的样式个数确定，名字也确定，单动态决定是否用 -->
+        <div class="basic" :class="Classobj" ></div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            style:'basic',
+            i:0,
+            Classarr:['red','blue','pink'],
+            Classobj:{
+                red:false,
+                blue:false,
+                pink:false
+
+            }
+        },
+        methods: {
+            fun0(){
+                style_lis=['red','blue','pink']
+                index=parseInt(Math.random()*3)
+                if(this.i%style_lis.length==0){this.style=''}
+                // this.style+=' '+style_lis[this.i++%style_lis.length]
+                this.style+=' '+style_lis[index]
+            }
+        },
+    
+    })
+</script>
+</html>

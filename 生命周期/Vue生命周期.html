@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1 :style="{opacity}">{{ name }}</h1>
+    </div>
+</body>
+<script>
+    /*
+        生命周期
+        1.Vue再关键时刻调用的一些函数
+        2.生命周期函数的名称不可以更改
+        3.生命周期函数的this指向是vm或组件实例对象
+    */
+    new Vue({
+        el:"#root",
+        data:{
+            name:'hello Word !!!',
+            opacity:1
+        },
+        //Vue完成模板的解析，并把初始的真实dom放入页面时调用mounted(挂载完毕)
+        mounted() {
+            setInterval(()=>{
+                this.opacity -=0.01
+                if(this.opacity<=0){this.opacity=1}
+            },16)
+        },
+
+    })
+</script>
+</html>

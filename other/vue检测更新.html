@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        1.Vue会监视data中所有层次的数据
+
+        2.如何检测对象中的数据?
+            通过setter实现监视，且要在new Vue就传入要检测的数据。
+                （1）对象中后追加的属性，Vue默认不做响应式处理
+                （2）如需给添加的属性左响应式，请使用如下API
+                    vue.set(target,propertyName/index,value)或
+                    this.$set(target,propertyName/index,value)
+        3.如何检测数组中的更新元素
+                通过包裹数组更新元素的方法实现
+                    （1）调用原生对应的方法对数组进行更新
+                    （2）重新解析模板，进行更新页面
+        4.在Vue修改数组中的某个元素一定要使用以下方法
+                1.使用这些API:push()、pop()、unshift()、shift()、splice()、sort()、reverse()
+                2.Vue.set()或vm.$set()
+        5.以上方法会修改原数组，如果使用以下非变更方法，则需要使用新数组替换旧数组
+            filter()、concat()、slice()
+        6.注意:Vue.set()或vm.$set()不能给vm实例对象或vm的数据根对象添加属性
+     -->
+    <div id="root">
+        <ul>
+            <li v-for="p in persons" :key="p.id">{{p.name}}-{{p.age}}-<span v-if="p.sex!=undefined">{{ p.sex }}</span></li>
+            <input placeholder="学生id"  type="text" v-model="add_id">
+            <input placeholder="学生姓名" type="text" v-model="add_name">
+            <input placeholder="学生年龄" type="text" v-model="add_age">
+            <button @click="updatasex">点击添加学生性别信息</button>
+            <button @click="updatainfo">点击添加学生</button>
+            <button @click="changeinfo">修改添加的学生信息</button>
+            <button @click="updatafirstinfo">替换第一个学生的信息</button>
+            <button @click="deletelastinfo">删除最后一个学生的信息</button>
+            <button @click="deletefirstinfo">删除最前面一个学生的信息</button>
+            <input type="text" placeholder="输入要删除学生的位次" v-model="s_i">
+            <button @click="deleteindexinfo">删除指定位数的学生</button>
+            <button @click="removeinfo">删除name等于开除的学生信息</button>
+        </ul>
+    </div>
+</body>
+<script>
+  const vm=new Vue({
+        el:"#root",
+        data:{
+            add_id:'',
+            add_name:'',
+            add_age:'',
+            s_i:'',
+            persons:[
+            {id:'001',name:'czz',age:18},
+            {id:'002',name:'czx',age:19},
+            {id:'003',name:'czg',age:20},
+            ],
+            },
+         methods:{
+                updatasex(){
+                    for(let i=0;i<this.persons.length;i++){
+                        Vue.set(this.persons[i],'sex','男')
+                    }
+                },
+                updatainfo(){
+                    console.log(this.add_id,this.add_name,this.add_age)
+                    this.persons.push({id:this.add_id,name:this.add_name,age:this.add_age})
+                },
+                changeinfo(){
+                    this.persons[this.persons.length-1].name='开除'
+                },
+                updatafirstinfo(){
+                    this.persons.splice(0,1,{id:'009',name:'臣中',age:'29'})
+                },
+                deletelastinfo(){
+                    this.persons.pop()
+                },
+                deletefirstinfo(){
+                    this.persons.shift()
+                },
+                deleteindexinfo(){
+                    this.persons.splice(this.s_i-1,1)
+                },
+                removeinfo(){
+                    this.persons=this.persons.filter((p)=>{
+                        return p.name!='开除'
+                    })
+                }
+        }
+    })
+
+</script>
+</html>

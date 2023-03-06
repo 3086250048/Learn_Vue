@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div :style="Styleobj" @click="fun0" >你好</div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#root',
+        data:{
+            fsize:100,
+            Styleobj:{
+                fontSize:'60px',
+            }
+        },
+        methods: {
+            fun0(){
+                this.Styleobj.fontSize= parseInt( this.Styleobj.fontSize) + 10 +'px'
+            }
+        },    
+
+    })
+</script>
+</html>

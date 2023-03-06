@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="./js/vue.js" ></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <h1> {{ name }}</h1>
+        <textarea name="" id="" cols="30" rows="10">{{ $emit }}</textarea>
+    </div>
+    <script>
+        /*
+        MVVM模型:
+            1.M Model模型 data中的数据
+            2.V View 模板代码
+            3.VM view Model Vue实例
+        特点:
+            1.data中的所有属性最后都出现在了vm实例上
+            2.vm身上的所有属性以及vm原型对象上的所有属性，在vue面板中都可以直接使用
+        */
+       const vm= new Vue({
+            data:function(){
+                console.log(this)
+                return{
+                    name:'你好'
+                }
+            }
+        })
+        vm.$mount('#root')
+    </script>
+</body>
+</html>

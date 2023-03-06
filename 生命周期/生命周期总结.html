@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1 :style="{opacity}">hello Word!!!</h1>
+        <button @click="stop">停止变换</button>
+    </div>
+</body>
+<script>
+    /*
+        总结
+            1.mounted: 发送ajax请求、启动定时器、绑定自定义事件、订阅消息【初始化操作】
+            2.beforeDestroy:清除定时器、解绑自定义事件、取消订阅消息【收尾工作】
+        关于销毁Vue实例
+            1.销毁后借助Vue开发者工具看不到任何消息
+            2.销毁后自定义事件会失效、但原生DOM事件依然有效
+            3.一般不借助beforeDestory操作数据，因为即便操作数据，也不会触发更新流程
+    
+    
+    */
+   const vm= new Vue({
+        el:"#root",
+        data:{
+            opacity:1,
+            flag:false
+        },
+        methods: {
+            stop(){
+                // this.flag=!this.flag
+                this.$destroy()
+            }
+        },
+        mounted() {
+            this.interval_id=setInterval(()=>{
+                this.opacity-=0.01
+                if(this.opacity<=0){this.opacity=1}
+            },16)
+        },
+
+        beforeDestroy() {
+             clearInterval(this.interval_id)
+        },
+       
+    })
+</script>
+</html>

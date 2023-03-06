@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div >当前的n值是:<span v-text="n"></span></div>
+        <div  >放大的n值是:<span v-big="n"></span></div>
+        <input type="text" v-fbind:value="n">
+        <button @click="n++">点击</button>
+        
+    </div>
+</body>
+<script>
+    /*
+    自定义指令总结
+        一、定义语法
+            -局部定义
+                -new Vue({
+                    directives{
+                        指令名:{
+                            bind(){},
+                            inserted(){},
+                            update(){}
+                        }
+                    }
+
+                })
+                -new Vue({
+                    directives{
+                        指令名(){
+
+                        }
+                    }
+                })
+            -全局定义
+                -Vue.directive(指令名,{
+                    bind(){},
+                    inserted(){},
+                    update(){}
+                })
+                -Vue.directive(指令名,回调函数)
+        备注:
+                1.指令定义时不加v-，但是使用时要加v-
+                2.指令名如果是多个单词，要使用a-b命名方式，不要使用classname命名
+    */
+
+
+
+    //定义全局指令
+    // Vue.directives('fbind',{
+    //     //指令与元素成功绑定的时
+    //     bind(e,b){
+    //             console.log(this)//此处的this是window
+    //             e.value=b.value
+    //         },
+    //         //指令所在元素被插入页面时
+    //         inserted(e,b){
+    //             e.focus()
+    //         },
+    //         //指令所在的模板被重新解析时
+    //         update(e,b){
+    //             e.value=b.value
+    //         }
+    // })
+    new Vue({
+    el:'#root',
+    data:{
+        n:1
+
+    },
+    directives:{
+        /*
+        自定义函数合适会被调用（即bind和update阶段）
+        1.指令与元素之间绑定成功时。
+        2.指令所在的模板被解析时。
+        */
+       big(el,binding){
+
+            el.innerText=binding.value*10
+
+       },
+    //    fbind(e,b){
+    //         e.value=b.value
+    //         e.focus()
+    //    }
+        fbind:{
+            //指令与元素成功绑定的时
+            bind(e,b){
+                console.log(this)//此处的this是window
+                e.value=b.value
+            },
+            //指令所在元素被插入页面时
+            inserted(e,b){
+                e.focus()
+            },
+            //指令所在的模板被重新解析时
+            update(e,b){
+                e.value=b.value
+            }
+        }
+    }
+    
+    
+    
+    })
+</script>
+</html>

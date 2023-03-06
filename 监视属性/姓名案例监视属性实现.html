@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <span>姓:</span><input type="text" v-model="first_name">
+        <span>名:</span><input type="text" v-model="last_name"><br>
+        <span>全名:{{ full_name }}</span>
+    </div>
+</body>
+<script>
+    /*
+        computed和watch直接的区别
+        1.computed能完成的功能watch都可以完成
+        2.watch可以完成的功能，computed不一定可以完成
+        两个小原则
+            -所有被vue管理的函数，最好写成普通函数，这样this的指向才是vm或组件实例对象
+            -所有不被vue管理的函数(settimeout,ajax的回调函数,Promise的回调函数)最好写成箭头函数，
+            这样this指向的才是vm或组件实例对象。
+    
+    */
+    new Vue({
+        el:"#root",
+        data:{
+            first_name:'张',
+            last_name:'三',
+            full_name:'张-三'
+        },
+        watch:{
+            first_name:{
+                immediate:true,
+                handler(newValue){
+                    /*计算属性无法实现异步计算,而watch可以，且settimeout只能写箭头函数,
+                    因为settimeout是浏览器的方法，所有使用普通函数会导致this指向window
+                    ，而箭头函数回去找上一级的this。
+                    */
+                    setTimeout(()=>{
+                        this.full_name=newValue+'-'+this.last_name
+                    },1000)
+                    
+                }
+            },
+            last_name(newValue){
+                this.full_name=this.first_name+'-'+newValue
+            }
+        }
+    })
+</script>
+</html>

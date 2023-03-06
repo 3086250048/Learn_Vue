@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root1">
+        <h1>{{ name }},{{ address }}</h1>
+    </div>
+    <div id="root2">
+        <!-- toUpperCase()将小写转换为大写 -->
+        <h1>{{ name.toUpperCase() }},{{ address }}</h1>
+    </div>
+    <script>
+        /** 
+          
+            1.容器和Vue实例的关系只能是一对一
+            2.真实开发环境中只要一个vue实例，并且会配合组件一起使用
+            3.{{ xxx }} 中的xxx要写js表达式，且xxx可以自动读取到data中的所有属性
+                  注意区分: js 表达式 和 js 代码
+             1.表达式:一个表达式会生成一个值，可以放在任何一个需要值的地方，表达式的
+             形式可以是以下的形式(只要是能被js变量接收的都可以)
+                      -a
+                      -a+b
+                      -demo(1)
+                      -x===y?x:y
+             2.js代码语句
+                      -if(){}
+                      -for(){}
+            4.一旦data中的数据发生改变，那么页面中用到改数据的地方也会自动更新
+        **/
+        new Vue({
+            el:'#root1',
+            data:{
+                name:'czz',
+                address:'123'
+        }})
+        new Vue({
+            el:'#root2',
+            data:{
+                name:'qqq',
+                address:'1212121'
+            }
+
+        })
+        // new Vue({
+        //     el:'#root',
+        //     data:{
+        //         address:'88212'
+        //     }
+        // })
+    </script>
+</body>
+</html>

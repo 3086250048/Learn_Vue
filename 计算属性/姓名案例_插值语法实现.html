@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <span>姓:</span><input type="text" v-model="first_name">
+        <span>名:</span><input type="text" v-model="last_name"><br>
+        <span>全名:{{ first_name.slice(0,3) }}-{{ last_name }}</span>
+    </div>
+</body>
+<script>
+    new Vue({
+    el:"#root",
+    data:{
+        first_name:'张',
+        last_name:'三'
+    }
+    })
+</script>
+</html>

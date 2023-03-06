@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <h1>今天天气很{{ info }}</h1>
+        <button @click="fun0">点击我</button>
+    </div>
+</body>
+<script>
+     new Vue({
+        el:"#root",
+        data:{
+            isHot:true
+        },
+        computed:{
+            info(){
+                return this.isHot?'炎热':'凉爽'
+            }
+        },
+        methods: {
+            fun0(){
+                this.isHot = !this.isHot
+            }
+        },
+    })
+</script>
+</html>

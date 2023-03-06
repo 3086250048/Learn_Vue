@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>{{ name }}</h1>
+        <!-- v-text
+            1.向其所在的节点中渲染文本内容
+            2.与插值语法的区别:v-text会替换掉节点中的内容，{{ xx }}则不会
+        
+        -->
+        <h2 v-text="name"></h2>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            name:'hello'
+        }
+
+    })
+</script>
+</html>

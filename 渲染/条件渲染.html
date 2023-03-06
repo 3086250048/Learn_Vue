@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        #box0{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h2 id="box0" v-show="flag">你好</h2>    
+        <button  @click="fun0">点击</button>
+
+        <!-- <h3 v-if="n%3==0">A</h3>
+        <h3 v-if="n%3==1">B</h3>
+        <h3 v-if="n%3==2">C</h3> -->
+<!-- v-if 和 v-show 都可以实现的效果的情况下，如果修改频率高建议使用v-show 因为v-show不会删除节点
+    如果修改频率低建议使用v-if、v-else-if 、 v-else，每个标签之间不能中断否则语法无效
+-->
+        <!-- <h3 v-show="n%3==0">A</h3>
+        <h3 v-show="n%3==1">B</h3>
+        <h3 v-show="n%3==2">C</h3>
+        <button @click="n++">点击</button> -->
+
+        <!-- <h3 v-if="n==0">A</h3>
+        <h3 v-else-if="n==1">B</h3>
+        <h3 v-else-if="n==2">C</h3>
+        <h3 v-else>D</h3>
+        <button @click="n++">点击</button> -->
+
+        <!-- 如果想通过一个v-if影响多个标签则可以使用template 且不会再html中显示，只能和v-if配合使用 -->
+        <template v-if="n==true">
+            <h3 >A</h3>
+            <h3 >B</h3>
+            <h3 >C</h3>
+            <h3 >D</h3>
+        </template>
+        <button @click="n=!n">点击</button>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            flag:true,
+            n:false
+        },
+        methods: {
+            fun0(){
+                this.flag= !this.flag
+            }
+        },
+    })
+</script>
+</html>

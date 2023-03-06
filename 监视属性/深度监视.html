@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>a的值:{{ number.a }}</h1>
+        <button @click="number.a++">点击</button>
+        <h1>b的值:{{ number.b }}</h1>
+        <button @click="number.b++">点击</button>
+        <h1>c的值:{{ c }}</h1>
+        <button @click="c++">点击</button>
+    </div>
+</body>
+<script>
+   const vm= new Vue({
+        el:"#root",
+        data:{
+            number:{
+                a:1,
+                b:1
+            },
+            c:1
+        },
+        watch:{
+            // 正常写法
+            // number:{
+            //     //监视可变对象中的值的改变
+            //     deep:true,
+            //     handler(newValue,oldValue){
+            //         console.log('number改变了',newValue,oldValue)
+            //     }
+            // }
+            //简写(仅当c的监视属性中不需要除handler以外的配置时可以简写)
+            c(newValue,oldValue){
+                console.log('c改变了',newValue,oldValue)
+            }
+        }
+    })
+    // $watch写法简写(仅当c的监视属性中不需要除handler以外的配置时可以简写)
+    vm.$watch('c',function(){
+        console.log('c改变了')
+    })
+</script>
+</html>

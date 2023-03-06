@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+       <app></app>
+    </div>
+</body>
+<script>
+    //定义student组件
+    const student=Vue.extend({
+        template:`<h1>我是{{ number }}号学生</h1>`,
+        data(){
+            return {
+                number:100
+            }
+        }
+    })
+    //定义school组件
+    const school=Vue.extend({
+        template:`
+        <div>
+        <h1>学校:{{ name }}</h1>
+        <student></student>
+        </div>
+        `,
+        
+        data(){
+            return {
+                name:'浙江经济'
+            }
+        },
+        components:{
+            student:student
+        }
+    })
+   //定义hello组件
+   const hello=Vue.extend({
+    template:`
+                <h1>{{ text }}</h1>
+            `,
+        data(){
+            
+            return{
+                text:'你好'
+            }
+        }
+
+   })
+   //定义app组件
+   const app=Vue.extend({
+        template:`
+        <div>
+            <hello></hello> 
+            <school></school>
+        </div>
+        `,
+        components:{
+            school:school,
+            hello:hello
+        }
+   })
+    new Vue({
+        el:"#root",
+        components:{
+            app:app
+        }
+    })
+</script>
+</html>

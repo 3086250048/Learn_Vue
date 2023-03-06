@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        N的值是{{ n }}
+        <button @click="add">点击我n+1</button>
+        <button @click="bye">点我销毁vm</button>
+    </div>
+</body>
+<script>
+    const vm=new Vue({
+        el:"#root",
+        data:{
+            n:1
+        },
+        beforeCreate() {
+            // console.log(this)
+            console.log('beforecreated')
+        },
+        created() {
+           console.log('created')
+            
+        },
+        beforeMount() {
+          console.log('beformount')
+        },
+        mounted() {
+           console.log('mounted')
+        },
+        methods: {
+            add(){
+                this.n+=1
+            },
+            bye(){
+                this.$destroy()
+            }
+        },
+        beforeUpdate() {
+            console.log('beforupdate')
+        },
+        updated() {
+            console.log('updated')
+        },
+    
+    })
+</script>
+</html>

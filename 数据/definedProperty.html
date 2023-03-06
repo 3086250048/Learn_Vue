@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        let num0=18
+        let person={
+            name:'czz',
+            gender:'male',
+            
+        }
+        Object.defineProperty(person,'age',{
+            // value:18, //控制属性的初始值
+            // enumerable:true,//控制属性是否可以枚举
+            // writable:true,//控制属性是否可以被修改
+            // configurable:true,//控制属性是否可以被删除
+
+            //当有人读取person属性的时，get函数() getter 就会被调用，且返回值就是age的值
+            get:function(){
+                return num0
+            },
+            //当有人修改person的age属性时，set函数(setter)就会被调用，且会收到修改的具体值
+            set:function(value){
+                num0=value
+            }
+        })
+        console.log(person)
+        //Object.keys(对象)将对象中的属性提取出来，通过列表返回
+        // let obj_lis=Object.keys(person)
+        // console.log(obj_lis)
+        
+
+    </script>
+</body>
+</html>

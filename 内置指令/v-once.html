@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- v-once指令
+        1.v-once所在节点再初次渲染之后，就视为静态内容
+        2.以后的数据改变不会引起v-once所在结构的更新，可以优化性能
+    
+    -->
+    <div id="root">
+        <h1 v-once>初始的n是:{{ n }}</h1>
+        <h1>当前的n是:{{ n }}</h1>
+        <button @click="n++">n++</button>
+    </div>
+</body>
+<script>
+    new Vue({
+    el:"#root",
+    data:{
+        n:0
+    }
+    
+    
+    
+    })
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+
+</head>
+<body>
+    <div id="root">
+        <h1>{{ name }}</h1>
+    </div>
+
+    <script>
+    const v=new Vue({
+        // data:{
+        //     name:'你好'
+        // }
+        /*
+            data的第二种写法
+        */
+        data:function(){
+            // 此处的this为vue实例
+            console.log(this)
+            return{
+                name:'你好'
+            }
+        }
+    })
+    setTimeout(() => {
+        /* vue实例绑定容器的第二种写法:
+            这种方法绑定的vue容器更加灵活
+            $mount(挂载的意思)为vue实例的原型对象中的属性
+        */
+        v.$mount('#root')
+    }, 1000);
+    
+    
+    </script>
+</body>
+</html>

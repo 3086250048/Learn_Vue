@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        收集表单数据:
+        input type
+            -text v-model收集的是value值，用户输入的是value值
+            -radio v-model收集的是value值，且要给标签配置value值
+            -checkbox 
+                -没有配置value的情况下收集的就是checked(True 或 False)
+                -配置value的情况下
+                    -v-model的初始值是非数组，收集的是checked(True 或 False)
+                    -v-model的初始值是数组，收集的是value组成的数组
+        v-model的三个修饰符
+            lazy:失去焦点再更新vm._data中的数据
+            number:输入字符串转换为有效的数字
+            trim:过滤字符串首尾空格
+
+
+
+
+     -->
+    <div id="root">
+        <form @submit.prevent="submit">
+            <label for="account">账号:</label>
+        <input id="account" type="text" v-model.trim="userinfo.account"><br><br>
+        <label for="password">密码:</label>
+        <input id='password' type="text" v-model.trim="userinfo.password"><br/><br/>
+        <label for="age">年龄:</label>
+        <input id='age' type="number" v-model.number="userinfo.age"><br/><br/>
+        
+        性别:
+        男<input type="radio" name="sex" v-model="userinfo.sex" value="male">
+        女<input type="radio" name="sex" v-model="userinfo.sex" value="female"><br><br>
+        爱好:
+        打球<input type="checkbox" v-model="userinfo.hobby" value="basketball">
+        游泳<input type="checkbox" v-model="userinfo.hobby" value="swing">
+        吃饭<input type="checkbox" v-model="userinfo.hobby" value="eat"><br><br>
+        所属校区
+        <select  v-model="userinfo.city">
+            <option value="">请选择校区</option>
+            <option value="beijing">北京</option>
+            <option value="shanghai">上海</option>
+            <option value="shenzhen">深圳</option>
+            <option value="wuhan">武汉</option>
+        </select><br><br>
+        其他信息:
+        <textarea v-model.lazy="userinfo.other"></textarea><br><br>
+        <input type="checkbox" v-model="userinfo.agree">阅读协议并接收<a href="javascript:;">《用户协议》</a>
+        <br><br>
+        <button>提交</button>
+        </form>
+        
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            userinfo:{
+            account:'',
+            password:'',
+            sex:'',
+            hobby:[],
+            city:'beijing',
+            other:'',
+            agree:'',
+            age:''
+            }
+           
+        },
+        methods:{
+            submit(){
+                alert('提交')
+                console.log(JSON.stringify(this.userinfo))
+            }
+
+
+        }
+    
+    })
+</script>
+</html>

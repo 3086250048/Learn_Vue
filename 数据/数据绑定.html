@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="./js/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <!-- 
+            1.单向绑定(v-bind):数据只能从data流向页面
+            2.双向绑定(v-model):数据和data可以互相影响
+            v-model只能应用在表单类元素上(用于和用户交互的元素)，其他类型元素会报错，
+            v-model:value= 可以直接简写成 v-model=
+         -->
+        单向数据绑定<input type="text" :value="text"><br>
+        双向数据绑定<input type="text" v-model="text">
+    </div>
+    <script>
+        new Vue({
+            el:'#root',
+            data:{
+                text:'1212121'
+            }
+
+
+        })
+    </script>
+</body>
+</html>

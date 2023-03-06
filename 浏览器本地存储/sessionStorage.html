@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="saveData()">
+        点击保存sessionstorage
+    </button>
+    <button onclick="readData()">
+        点击读取sessionstorage
+    </button>
+    <button onclick="deleteData()">
+        点击删除sessionstorage
+    </button>
+    <button onclick="clearData()">
+        清空sessionstorage
+    </button>
+</body>
+<script>
+    function saveData(){
+        const obj={
+            name:'张三',
+            age:'18'    
+        }
+        sessionStorage.setItem('msg',JSON.stringify(obj))
+        sessionStorage.setItem('msg1',JSON.stringify(obj))
+
+    }
+    function readData(){
+        const str= sessionStorage.getItem('msg')
+        console.log(JSON.parse(str))
+    }
+    function deleteData(){
+        sessionStorage.removeItem('msg')
+    }
+    function clearData(){
+        sessionStorage.clear()
+    }
+</script>
+</html>

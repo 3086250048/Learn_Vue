@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 原理看第30集 -->
+        <ul>
+            <li v-for="p in persons" :key="p.id">{{ p.name }}-{{ p.age }}<input type="text"></li>
+            <button @click="fun0"> 添加</button>
+        </ul>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#root",
+        data:{
+            persons:[
+            {id:'001',name:'czz',age:"18"},
+            {id:'002',name:'cxc',age:"19"},
+            {id:'003',name:'czd',age:"20"},
+            {id:'004',name:'cza',age:"21"}
+            ]
+
+        },
+        methods:{
+            fun0(){
+                const p={id:'005',name:'cfc',age:'22'}
+                this.persons.unshift(p)
+            }
+        }
+           
+       
+    })
+</script>
+</html>
